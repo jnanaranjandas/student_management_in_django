@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+      <title>Add Subject</title>
+      <link rel="shortcut icon" href="{% static "assets/img/favicon.png" %}">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
+      <link rel="stylesheet" href="{% static "assets/plugins/bootstrap/css/bootstrap.min.css" %}">
+      <link rel="stylesheet" href="{% static "assets/plugins/fontawesome/css/fontawesome.min.css" %}">
+      <link rel="stylesheet" href="{% static "assets/plugins/fontawesome/css/all.min.css" %}">
+      <link rel="stylesheet" href="{% static "assets/css/style.css" %}">
+
+    
+     
+   </head>
+   <body>
+      <div class="main-wrapper">
+
+        {% include "Includes/header.html" %}
+         
+       {% include "Includes/sidebar.html" %}
+
+
+         <div class="page-wrapper">
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                    <div class="col">
+                    <h3 class="page-title">Add Subject</h3>
+                    </div>
+                    </div>
+                    </div>
+
+                                    
+                    {% if messages %}
+                    {% for message in messages  %}
+                    {% if message.tags == 'error' %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                       <strong>{{message}}</strong>
+                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                       </button>
+                     </div>
+
+                     {% endif %}
+                     {% endfor %}
+                     {% endif %}
+
+                     {% if messages %}
+                     {% for message in messages  %}
+                     {% if message.tags == 'success' %}
+                     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+                      {% endif %}
+                      {% endfor %}
+                      {% endif %}
+                    
+                    <div class="row">
+                    <div class="col-sm-12">
+                    <div class="card">
+                    <div class="card-body">
+
+                    <form action="{% url "add_sub" %}" method="POST">
+
+                        {% csrf_token %}
+                        
+                    <div class="row">
+                    <div class="col-12">
+                    <h5 class="form-title"><span>Subject Information</span></h5>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                    <label>Subject Name</label>
+                    <input type="text" class="form-control" name="sub_name" required>
+                    </div>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                    <label>Course</label>
+                    <select class="form-control" name="course_id" required>
+                       <option>Select Course</option>
+                       {% for i in course  %}
+                       <option value="{{i.id}}">{{i.name}}</option>
+                       {% endfor %}
+                      
+                    </select>
+                        
+                     </div>
+
+
+                    <div class="col-12 col-sm-6">
+
+                        <label>Staff</label>
+                        <select class="form-control" name="staff_id" required>
+                           <option>Select Staff</option>
+                           {% for i in staff  %}
+                           <option value="{{i.id}}">{{i.admin.first_name}} {{i.admin.last_name}}</option>
+                           {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-primary">Add Subject</button>
+                    </div>
+                    </div>
+                    </form>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    
+            <footer class="text-center">
+               <p>Copyright © 2024 Gyan School.</p>
+            </footer>
+         </div>
+      </div>
+
+      <script src="{% static "assets/js/jquery-3.6.0.min.js" %}"></script>
+      <script src="{% static "assets/js/popper.min.js" %}"></script>
+      <script src="{% static "assets/plugins/bootstrap/js/bootstrap.min.js" %}"></script>
+      <script src="{% static "assets/plugins/slimscroll/jquery.slimscroll.min.js" %}"></script>
+      <script src="{% static "assets/plugins/apexchart/apexcharts.min.js" %}"></script>
+      <script src="{% static "assets/plugins/apexchart/chart-data.js" %}"></script>
+      <script src="{% static "assets/js/script.js" %}"></script>
+
+    
+
+   </body>
+   
+</html>

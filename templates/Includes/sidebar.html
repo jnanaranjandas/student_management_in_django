@@ -1,0 +1,179 @@
+
+
+{% load static %}
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+       <div id="sidebar-menu" class="sidebar-menu">
+         {% if user.user_type == '1' %}
+          <ul>
+             <li class="menu-title">
+                <span>Main Menu</span>
+             </li>
+
+             <li class="{% if request.path == '/hod/' %}active{% endif %}">
+               <a href="{% url "home" %}"><i class="fas fa-house-user"></i> <span>Dashboard</span></a>
+            </li>
+           
+             <li class="submenu {% if request.path == '/hod/add_stu/' or request.path == '/hod/view_stu/' %}active{% endif %}">
+                <a href="#"><i class="fas fa-user-graduate"></i> <span>Students</span> <span class="menu-arrow"></span></a>
+                <ul>
+                  <li><a href="{% url "add_stu" %}">Add Student</a></li>
+                   <li><a href="{% url "view_stu" %}">View Student</a></li>
+                </ul>
+             </li>
+
+             <li class="submenu {% if request.path == '/hod/add_staff' or request.path == '/hod/view_staff' %}active{% endif %}">
+                <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Staff</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url "add_staff" %}">Add Staff</a></li>
+                   <li><a href="{% url "view_staff" %}">View Staff</a></li>
+                </ul>
+             </li>
+             <li class="submenu {% if request.path == '/hod/add_course/' or request.path == '/hod/view_course/' %}active{% endif %}">
+                <a href="#"><i class="fas fa-graduation-cap"></i> <span>Course</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url "add_course" %}">Add Course</a></li>
+                   <li><a href="{% url "view_course" %}">View Course</a></li>
+                </ul>
+             </li>
+             <li class="submenu {% if request.path == '/hod/add_sub' or request.path == '/hod/view_sub'  %}active{% endif %}">
+                <a href="#"><i class="fas fa-book-reader"></i> <span> Subjects</span> <span class="menu-arrow"></span></a>
+                <ul>
+                   <li><a href="{% url "add_sub" %}">Add Subject</a></li>
+                   <li><a href="{% url "view_sub" %}">View Subject</a></li>
+                </ul>
+             </li>
+
+             <li class="submenu {% if request.path == '/hod/add_session' or request.path == '/hod/view_session' %}active{% endif %}">
+               <a href="#"><i class="fas fa-clock "></i> <span> Session</span> <span class="menu-arrow"></span></a>
+               <ul>
+                  <li><a href="{% url "add_session" %}">Add Session</a></li>
+                  <li><a href="{% url "view_session" %}">View Session</a></li>
+               </ul>
+            </li>
+
+            <li class="{% if request.path == '/hod/staff_send_notification' %}active{% endif %}">
+               <a href="{% url "staff_notification" %}"><i class="fas fa-bell"></i> <span>Send Staff Notification</span></a>
+            </li>
+
+            <li class="{% if request.path == '/hod/student_notification' %}active{% endif %}">
+               <a href="{% url "student_notification" %}"><i class="fas fa-bell"></i> <span>Send Student Notification</span></a>
+            </li>
+
+            <li class="{% if request.path == '/hod/view_stu_attendance' %}active{% endif %}">
+               <a href="{% url "stu_view_attten" %}"><i class="fas fa-calendar"></i> <span>View Attendance</span></a>
+            </li>
+
+            <li class="{% if request.path == '/hod/hod_staff_feedback' %}active{% endif %}">
+               <a href="{% url "hod_staff_feedback" %}"><i class="fas fa-comments"></i> <span>Staff Feedback</span></a>
+            </li>
+
+            <li class="{% if request.path == '/hod/student_feedback_hod' %}active{% endif %}">
+               <a href="{% url "stu_fedback_hod" %}"><i class="fas fa-comments"></i> <span>Student Feedback</span></a>
+            </li>
+
+            <li class="{% if request.path == '/hod/staff_leave_view' %}active{% endif %}">
+               <a href="{% url "staff_leave_view" %}"><i class="fas fa-envelope"></i> <span>Staff Leave</span></a>
+            </li>
+
+            <li class="{% if request.path == '/hod/student_leave_view' %}active{% endif %}">
+               <a href="{% url "stu_leave_view" %}"><i class="fas fa-envelope"></i> <span>Student Leave</span></a>
+            </li>
+
+            <li>
+               <a href="{% url "dologout" %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </li>
+             
+          </ul>
+
+
+          {% elif user.user_type == '2' %}
+
+          <ul>
+            <li class="menu-title">
+               <span>Main Menu</span>
+            </li>
+
+            <li class="{% if request.path == '/staff/home' %}active{% endif %}">
+              <a href="{% url "staff_home" %}"><i class="fas fa-house-user"></i> <span>Dashboard</span></a>
+           </li>
+
+           <li class="{% if request.path == '/staff/take_attendance' %}active{% endif %}">
+            <a href="{% url "staff_take_attendance" %}"><i class="fas fa-calendar-alt"></i> <span>Take Attendance</span></a>
+         </li>
+
+           <li class="{% if request.path == '/staff/view_attendance' %}active{% endif %}">
+            <a href="{% url "staff_view_attendance" %}"><i class="fas fa-calendar-alt"></i> <span>View/Update Attendance</span></a>
+         </li>
+
+         <li class="{% if request.path == '/staff/add_result' %}active{% endif %}">
+            <a href="{% url "staff_add_result" %}"><i class="fas fa-poll-h"></i> <span>Add Result</span></a>
+         </li>
+
+         <li class="{% if request.path == '/staff/apply_leave' %}active{% endif %}">
+            <a href="{% url "apply_leave" %}"><i class="fas fa-envelope-open"></i> <span>Appply Leave</span></a>
+         </li>
+          
+         
+         <li class="{% if request.path == '/staff/send_feedback' %}active{% endif %}">
+            <a href="{% url "send_feedback" %}"><i class="fas fa-comment"></i> <span>Send Feedback</span></a>
+         </li>
+
+          
+         <li class="{% if request.path == '/staff/notifications' %}active{% endif %}">
+            <a href="{% url "notification" %}"><i class="fas fa-bell"></i> <span>Notification</span></a>
+         </li>
+
+         
+         <li>
+            <a href="{% url "dologout" %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+         </li>
+          
+
+
+          {% else %}
+
+
+          <ul>
+            <li class="menu-title">
+               <span>Main Menu</span>
+            </li>
+
+            <li class="{% if request.path == '/student/home' %}active{% endif %}">
+              <a href="{% url "student_home" %}"><i class="fas fa-house-user"></i> <span>Dashboard</span></a>
+           </li>
+
+           <li class="{% if request.path == '/staff/stu_view_attendance' %}active{% endif %}">
+            <a href="{% url "stu_view_attendance" %}"><i class="fas fa-calendar-alt"></i><span>View Attendance</span></a>
+           </li>
+
+           <li class="{% if request.path == '/student/view_result' %}active{% endif %}">
+            <a href="{% url "view_result" %}"><i class="fas fa-poll"></i><span>View Result</span></a>
+           </li>
+
+           
+           <li class="{% if request.path == '/student/apply_stu_leave' %}active{% endif %}">
+            <a href="{% url "apply_stu_leave" %}"><i class="fas fa-envelope-open"></i><span>Apply For Leave</span></a>
+           </li>
+
+           
+           <li class="{% if request.path == '/student/stu_feedback' %}active{% endif %}">
+            <a href="{% url "stu_feedback" %}"><i class="fas fa-comment"></i><span>Send Feedback</span></a>
+           </li>
+    
+           <li class="{% if request.path == '/student/stu_noti' %}active{% endif %}">
+            <a href="{% url "stu_noti" %}"><i class="fas fa-bell"></i><span>Notifications</span></a>
+           </li>
+                 
+         <li>
+            <a href="{% url "dologout" %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+         </li>
+          
+         </ul>
+
+
+          {% endif %}
+       </div>
+    </div>
+ </div>
